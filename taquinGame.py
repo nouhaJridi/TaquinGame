@@ -118,9 +118,8 @@ class CLITaquin():
         else :
             self.draw()
             print("profondeur de la solution: "+str(self.ROUND))
-            print("Nombre des noeuds visités: "+str(self.algorithm.visit_nodes))
+            print("Nombre des noeuds visités: "+str(self.algorithm.Node.visit))
             
-
 
 if __name__ == "__main__":
     print("*** Jeu De Taquin ***")
@@ -130,7 +129,7 @@ if __name__ == "__main__":
         if choise == '2' :
             CLITaquin(AstarAlgorithm()).main()
         elif choise == '1' :
-            board = input("insérez l'état initial sous la forme d'une chaine et remplacez la case vide par un espace\n ")
+            board = input("insérez l'état initial sous la forme d'une chaine et remplacez la case vide par un espace\n")
             CLITaquin(AstarAlgorithm(),list(board)).main()
         elif choise == '3':
             break

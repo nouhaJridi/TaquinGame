@@ -1,5 +1,6 @@
 from copy import copy
 
+
 class IAlgorithm :
     def _possible_moves(self, board, config):  
         zero = 0

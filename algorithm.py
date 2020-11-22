@@ -12,7 +12,7 @@ class AstarAlgorithm(IAlgorithm):
         self.solution = []
         self.iterations = 0
         self.depth = -1
-        self.visit_nodes=0
+        
 
 
     def distance_de_manhattan(self, xA, yA, xB, yB ):
@@ -27,7 +27,9 @@ class AstarAlgorithm(IAlgorithm):
     class Node():
         # could be a node factory, with heuristic implemented here. but yeah
         # this is ugly. but yeah
+        visit = 0
         def __init__(self, parent, move, board):
+            self.__class__.visit +=1
             self.parent = parent
             self.move = move
             self.board = board
@@ -104,7 +106,7 @@ class AstarAlgorithm(IAlgorithm):
             # select next best node :
             curr_node = None
             for node in open_nodes:
-                self.visit_nodes+=1 
+               
                 if (curr_node != None):
                     
                     if(curr_node.f > node.f):
