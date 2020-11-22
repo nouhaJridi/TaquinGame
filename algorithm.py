@@ -81,7 +81,7 @@ class AstarAlgorithm(IAlgorithm):
         node0.g = 0
         if choise_heuristic == '1':
             node0.h = self.heuristic1(initial_board)
-        elif choise_heuristic == '1':
+        elif choise_heuristic == '2':
             node0.h = self.heuristic2(initial_board)
         node0.f = node0.h + node0.g
 
@@ -127,7 +127,7 @@ class AstarAlgorithm(IAlgorithm):
                 
                 if choise_heuristic == '1':
                     new_node.h = self.heuristic1(initial_board)
-                elif choise_heuristic == '1':
+                elif choise_heuristic == '2':
                     new_node.h = self.heuristic2(initial_board)
                 # new_node.g is set automatically. And so shoud h and loss be... but yeah
                 new_node.f = new_node.h + new_node.g
