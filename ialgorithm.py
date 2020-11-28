@@ -40,22 +40,3 @@ class IAlgorithm :
         new_board[old_0], new_board[new_0] = new_board[new_0], new_board[old_0]
         return new_board
 
-
-debug_template = """
-        _________________
-        |     |     |     |
-        |  (  |  é  |  "  |
-        |_____|_____|_____|
-        |     |     |     |
-        |  @  |  &  |  ç  |
-        |_____|_____|_____|
-        |     |     |     |
-        |  -  |  è  |  )  |
-        |_____|_____|_____|
-        """  
-            # î
-            # | columns and rows identifiers.
-debug_template_list = ['(','é','"','@','&','ç','-','è',')']
-debug_board = [' ', '1', '2', '3', '4', '5', '6', '7', '8']
-debug_config = {'rows':3,'cols':3}
-

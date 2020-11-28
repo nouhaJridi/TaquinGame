@@ -55,10 +55,10 @@ class AstarAlgorithm(IAlgorithm):
         total_manhattan = 0
         for i in range(len(board)):
             if(board[i] != 0):
-                xA = int(board[i])/3
-                yA = int(board[i])%3
-                xB = int(final_board[i])/3
-                yB = int(final_board[i])%3 
+                xA = int(board.index(i))/3
+                yA = int(board.index(i))%3
+                xB = int(final_board.index(i))/3
+                yB = int(final_board.index(i))%3 
                 total_manhattan += self.distance_de_manhattan(xA, yA, xB, yB)
         return total_manhattan
     
@@ -66,10 +66,10 @@ class AstarAlgorithm(IAlgorithm):
         total_pieces_mal_placees = 0
         for i in range(len(board)):
             if(board[i] != 0):
-                xA = int(board[i])/3
-                yA = int(board[i])%3
-                xB = int(final_board[i])/3
-                yB = int(final_board[i])%3  
+                xA = int(board.index(i))/3
+                yA = int(board.index(i))%3
+                xB = int(final_board.index(i))/3
+                yB = int(final_board.index(i))%3  
                 total_pieces_mal_placees += self.piece_mal_placee(xA, yA, xB, yB)
         return total_pieces_mal_placees
 
