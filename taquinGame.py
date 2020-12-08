@@ -5,7 +5,7 @@ from ialgorithm import IAlgorithm
 from random import randrange
 
 class CLITaquin():
-    def __init__(self, algorithm ,final_abord , board=None):
+    def __init__(self, algorithm ,final_abord ,auto_board , board=None):
         self.algorithm = algorithm
         self.END = 0
         self.TEMPLATE = """
@@ -26,7 +26,7 @@ class CLITaquin():
         self.final_abord = final_abord
         
         if (board == None):
-            self.BOARD = [' ', '1', '2', '3', '4', '5', '6', '7', '8'] #final board
+            self.BOARD = auto_board #final board
             self.generate = True
         else :
             self.BOARD = board
@@ -128,6 +128,7 @@ if __name__ == "__main__":
     print("*** Jeu De Taquin ***")
     final_abord =input("insérez l'état final sous la forme d'une chaine et remplacez la case vide par un espace\n")
     final_abord = list(final_abord)
+    auto_board = copy (final_abord)
     final_abord[final_abord.index(' ')] = '0'
     for i in range(0, len(final_abord)): 
         final_abord[i] = int(final_abord[i]) 
@@ -135,10 +136,10 @@ if __name__ == "__main__":
     while(choise != '2' or choise != '1' or choise != '3'):
         choise = input("1-Donner l'état initiale\n2-Générer automatiquement\n3-quitter\n")
         if choise == '2' :
-            CLITaquin(AstarAlgorithm(), final_abord ).main()
+            CLITaquin(AstarAlgorithm(), final_abord, auto_board).main()
         elif choise == '1' :
             board = input("insérez l'état initial sous la forme d'une chaine et remplacez la case vide par un espace\n")
-            CLITaquin(AstarAlgorithm(),final_abord ,list(board)).main()
+            CLITaquin(AstarAlgorithm(),final_abord , auto_board ,list(board)).main()
         elif choise == '3':
             break
         

@@ -75,14 +75,15 @@ class AstarAlgorithm(IAlgorithm):
 
     def Astar(self, initial_board , final_board):
         # Initlialize the graph for A* :
-        #choice heuristic
+            
+        #choisir l'heuristique
         choise_heuristic = input("1-heuristique 1 : somme des distances de chaque pièce à sa position finale\n2-heuristique 2 : nombre de piéces mal placées\n")
         print("presser entrer pour commencer.")
         input()
         print("Recherche de la solution.....")
         sleep(1)
         
-        #initialiser noeud initial node0
+        #déclarer le noeud initial 
         node0 = self.Node(parent=None, move=None, board=initial_board) # initial node
         node0.g = 0
         if choise_heuristic == '1':
@@ -91,10 +92,9 @@ class AstarAlgorithm(IAlgorithm):
             node0.h = self.heuristic2(initial_board,final_board)
         node0.f = node0.h + node0.g
 
+    
         
-
-        
-        
+        #open_node <- créer une liste contient le noeud initial
         open_nodes = [node0]
         closed_nodes = []
         
@@ -104,16 +104,17 @@ class AstarAlgorithm(IAlgorithm):
 
         self.searched_once = True
         self.iterations += 1
-        max_depth = self.depth
+        
 
-        # We search while there are nodes to search on.
-        while( (len(open_nodes) > 0) & (max_depth != 0) ):
-            max_depth -= 1
+        # Nous recherchons tant qu'il y a des nœuds sur lesquels rechercher..
+        while( (len(open_nodes) > 0) ):
             self.iterations += 1
             
             # selection de meilleur noeud par tri de la liste ouverte par rapport f :
             sorted(open_nodes, key=lambda node: node.f)
             curr_node = open_nodes[0]
+            print("Rechrche Solution : nombre d'itération courant", self.iterations);
+            print("Rechrche Solution : noeud courrant",curr_node.board)
             
             # si curr_node est le but, sortir de la boucle avec succès en retournant le chemin; 
             if(curr_node.board == final_board):
@@ -138,10 +139,11 @@ class AstarAlgorithm(IAlgorithm):
                 new_node.f = new_node.h + new_node.g
                 next_nodes.append(new_node)
             
-            
+            #si on n'est pas des successeurs du noeud courant
             if(next_nodes == []):
                 print("Error, next nodes is empty.")
                 return
+            #on boucle les noeuds successeurs de noeud courant 
             for node in next_nodes :
                 if  not (node.in_list(closed_nodes)):
                     if not node.in_list(open_nodes):
@@ -154,10 +156,6 @@ class AstarAlgorithm(IAlgorithm):
                                     open_nodes.append(node)
 
                                 break
-        if(max_depth == 0):
-            print("Reached maximum depth without finding a solution.")
-        else:
-            print("No solution")
         self.solved = False
         
     def path_from_node(self, node):
